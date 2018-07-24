@@ -1,4 +1,4 @@
-var marcos = {
+/* var marcos = {
     nome: 'Marcos',
     idade: 33,
     job: 'UX Designer',
@@ -51,7 +51,51 @@ function isFullAge(limit, el) {
 
 var ages = arrayCalc(years, calculateAge);
 
-var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20)); */
 
-console.log(years);
-console.log(fullJapan);
+/* console.log(years);
+console.log(fullJapan); */
+
+
+function question(question, answers, correct) {
+    this.question = question;
+    this.answers = answers;
+    this.correct = correct;
+}
+
+var q1 = new question('Você é um UX Designer?', ['Sim', 'Não'], 0);
+
+var q2 = new question('Você conhece o método Design Sprint?', ['Design Thinking?', 'Sim', 'Não'], 1);
+
+var q3 = new question('Qual é o valor da equação 2x * 152 = 3y - 10x', ['Sei lá', 'Fudeu', '1501235', 'Não faço a mínima ideia'], 2)
+
+var questions = [q1, q2, q3];
+
+function showQuestion(arr) {
+    
+    //Seleciona uma questão aleatória na array Questions
+    var selectedQuestion = arr[Math.round(Math.random()*2)];
+    
+    //Apresenta no console as opções de respostas para a questão selecionada
+    for (var index = 0; index < selectedQuestion.answers.length; index++) {
+        console.log((index + 1) + ': ' + selectedQuestion.answers[index])
+    };
+
+    //Apresenta a pergunta selecionada
+    var resultado = prompt(selectedQuestion.question);
+  
+    //Checa se a resposta digita está de acordo com o gabarito
+    if (resultado - 1 === selectedQuestion.correct) {
+        console.log('Acertou');
+        showQuestion(arr);
+    } else {
+        console.log('errou');
+    }
+
+
+}
+
+showQuestion(questions);
+
+
+
