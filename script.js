@@ -74,7 +74,9 @@ var questions = [q1, q2, q3];
 function showQuestion(arr) {
     
     //Seleciona uma questão aleatória na array Questions
-    var selectedQuestion = arr[Math.round(Math.random()*2)];
+    var random = Math.round(Math.random()*(questions.length-1));
+    console.log(random);
+    var selectedQuestion = arr[random];
     
     //Apresenta no console as opções de respostas para a questão selecionada
     for (var index = 0; index < selectedQuestion.answers.length; index++) {
@@ -83,17 +85,24 @@ function showQuestion(arr) {
 
     //Apresenta a pergunta selecionada
     var resultado = prompt(selectedQuestion.question);
-  
+    
     //Checa se a resposta digita está de acordo com o gabarito
     if (resultado - 1 === selectedQuestion.correct) {
         console.log('Acertou');
-        showQuestion(arr);
+
+        if (questions.length < 2) {
+            console.log('Game Over');
+        } else {
+            questions.splice(random, 1);
+            showQuestion(arr);
+        }
+        
     } else {
         console.log('errou');
+        showQuestion(arr);
     }
-
-
 }
+
 
 showQuestion(questions);
 
