@@ -71,10 +71,34 @@ var q3 = new question('Qual é o valor da equação 2x * 152 = 3y - 10x', ['Sei 
 
 var questions = [q1, q2, q3];
 
+question.prototype.displayQuestion = function() {
+    //Apresenta a pergunta selecionada
+    console.log(this.question);
+    
+    //Apresenta no console as opções de respostas para a questão selecionada
+    for (var index = 0; index < this.answers.length; index++) {
+        console.log((index + 1) + ': ' + this.answers[index])
+    };
+}
+
+//Seleciona uma questão aleatória na array Questions
+var random = Math.round(Math.random()*(questions.length-1));
+
+//Executa a função para apresentar a questão
+questions[random].displayQuestion();
+
+//Apresenta o prompt para inserção da resposta
+var resposta = parseInt(prompt('Por favor digite sua resposta.'));
+
+console.log(resposta);
+
+
+
+/* var placar = 0;
+
 function showQuestion(arr) {
     
-    //Seleciona uma questão aleatória na array Questions
-    var random = Math.round(Math.random()*(questions.length-1));
+    
     console.log(random);
     var selectedQuestion = arr[random];
     
@@ -91,20 +115,31 @@ function showQuestion(arr) {
         console.log('Acertou');
 
         if (questions.length < 2) {
+            console.clear();
             console.log('Game Over');
+            aumertarPlacar();
         } else {
             questions.splice(random, 1);
+            aumertarPlacar();
+            console.clear();
             showQuestion(arr);
         }
         
     } else {
         console.log('errou');
+     
         showQuestion(arr);
     }
 }
+
+function aumertarPlacar(){
+    placar = placar + 1;
+    console.log('Score: '+ placar);
+}
+
 
 
 showQuestion(questions);
 
 
-
+ */
