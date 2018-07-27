@@ -57,40 +57,55 @@ var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20)); */
 console.log(fullJapan); */
 
 
-function question(question, answers, correct) {
-    this.question = question;
-    this.answers = answers;
-    this.correct = correct;
-}
+//Incluíndo todo o seu código dentro da estrutra (function(){})(); você preservará seu código e evitará que outras pessoas o alterem.
 
-var q1 = new question('Você é um UX Designer?', ['Sim', 'Não'], 0);
-
-var q2 = new question('Você conhece o método Design Sprint?', ['Design Thinking?', 'Sim', 'Não'], 1);
-
-var q3 = new question('Qual é o valor da equação 2x * 152 = 3y - 10x', ['Sei lá', 'Fudeu', '1501235', 'Não faço a mínima ideia'], 2)
-
-var questions = [q1, q2, q3];
-
-question.prototype.displayQuestion = function() {
-    //Apresenta a pergunta selecionada
-    console.log(this.question);
+(function() {
+    function question(question, answers, correct) {
+        this.question = question;
+        this.answers = answers;
+        this.correct = correct;
+    }
     
-    //Apresenta no console as opções de respostas para a questão selecionada
-    for (var index = 0; index < this.answers.length; index++) {
-        console.log((index + 1) + ': ' + this.answers[index])
-    };
-}
+    var q1 = new question('Você é um UX Designer?', ['Sim', 'Não'], 0);
+    
+    var q2 = new question('Você conhece o método Design Sprint?', ['Design Thinking?', 'Sim', 'Não'], 1);
+    
+    var q3 = new question('Qual é o valor da equação 2x * 152 = 3y - 10x', ['Sei lá', 'Fudeu', '1501235', 'Não faço a mínima ideia'], 2)
+    
+    var questions = [q1, q2, q3];
+    
+    question.prototype.displayQuestion = function() {
+        //Apresenta a pergunta selecionada
+        console.log(this.question);
+        
+        //Apresenta no console as opções de respostas para a questão selecionada
+        for (var index = 0; index < this.answers.length; index++) {
+            console.log(index + ': ' + this.answers[index])
+        };
+    
+    }
+    
+    question.prototype.checkResposta = function(resposta){
+        if (resposta === this.correct) {
+            console.log("Is correct!");
+        } else {
+            console.log('Wrong answer! Try again.');
+        }
+    }
+    
+    //Seleciona uma questão aleatória na array Questions
+    var random = Math.floor(Math.random() * questions.length);
+    
+    //Executa a função para apresentar a questão
+    questions[random].displayQuestion();
+    
+    
+    //Apresenta o prompt para inserção da resposta
+    var resposta = parseInt(prompt('Por favor digite sua resposta.'));
+    
+    questions[random].checkResposta(resposta);
+})();
 
-//Seleciona uma questão aleatória na array Questions
-var random = Math.round(Math.random()*(questions.length-1));
-
-//Executa a função para apresentar a questão
-questions[random].displayQuestion();
-
-//Apresenta o prompt para inserção da resposta
-var resposta = parseInt(prompt('Por favor digite sua resposta.'));
-
-console.log(resposta);
 
 
 
